@@ -1,0 +1,22 @@
+Functional
+    [] List Hotel (Show Name, Price, Detail)
+    [] Hotel Info (Show Name, Price, Detail, Map (eg. Google Map)
+    [] Login by using username and password.
+    [] Register (eg. Name, Last Name, Birth Data, and email)
+    [] Confirm Password Optional
+    [] Booking (Can Booking, Show My Booking)
+    [] If you have any idea about function in the app. Please put it in an application.
+
+Non-functional
+    [] Validate the duplicate email when registration
+    [] Show Available Hotel
+    [] Show the list of menu.
+    [] If you have any idea about function in the app. Please put it in an application.
+
+--------------------------------------------------------------------------------------------
+How to submit test
+        Github (Shared the repository that store your code to us).
+    []  Deploy your website to Netlify or Firebase hosting.
+        Send share link to spaceman@existing.co.
+        Subject: "Submit Front-end test (intern) - your_name"
+        cc: panupak.v@existing.co, jiidapa1996@gmail.com
