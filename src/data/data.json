@@ -16,9 +16,9 @@
             "hotelname": "Hotel_1",
             "status" : true,
             "room": [
-                        {"id": "001", "name":"VIP" ,"roomTotal": "0" ,"price": "1000-25000" ,"detail":"hello vip" ,"peopleNum":"2-4" ,"room_img": "https://cdn.vuetifyjs.com/images/carousel/bird.jpg"},
-                        {"id": "002", "name":"Normal" ,"roomTotal": "10","price": "1000-25000" ,"detail":"hello normal" ,"peopleNum":"2-4" ,"room_img":"https://cdn.vuetifyjs.com/images/carousel/bird.jpg"},
-                        {"id": "003", "name":"Common" ,"roomTotal": "10","price": "1000-25000" ,"detail":"hello common" ,"peopleNum":"2-4" ,"room_img":"https://cdn.vuetifyjs.com/images/carousel/bird.jpg"}
+                        {"id": "001", "name":"VIP" ,"roomTotal": "0" ,"price": "25000" ,"detail":"hello vip" ,"peopleNum":"2-4" ,"room_img": "https://cdn.vuetifyjs.com/images/carousel/bird.jpg"},
+                        {"id": "002", "name":"Normal" ,"roomTotal": "10","price": "10000" ,"detail":"hello normal" ,"peopleNum":"2-4" ,"room_img":"https://cdn.vuetifyjs.com/images/carousel/bird.jpg"},
+                        {"id": "003", "name":"Common" ,"roomTotal": "10","price": "5000" ,"detail":"hello common" ,"peopleNum":"2-4" ,"room_img":"https://cdn.vuetifyjs.com/images/carousel/bird.jpg"}
                     ]    
         }
 

@@ -7,7 +7,7 @@
             </v-toolbar>
         </div>
         <v-card
-            v-for="room in Hostel"
+            v-for="room in HostelRoomType"
             :key="room.id"
             flat
             dark
@@ -15,69 +15,169 @@
             class="mb-1"
             height="200"
         >
-        <v-img
-        height="200" 
-        :src="room.room_img">
+            <v-img
+            height="200" 
+            :src="room.room_img">
 
-            <div class="d-flex flex-no-wrap justify-space-between">
-              <div>
-                <v-card-title
-                  class="headline"
-                  v-text="room.name"
-                ></v-card-title>
+                <div class="d-flex flex-no-wrap justify-space-between">
+                <div>
+                    <v-card-title
+                    class="headline"
+                    v-text="room.name"
+                    ></v-card-title>
 
-                <v-card-subtitle>
-                    {{room.detail}}
-                </v-card-subtitle>
-                
-              </div>
-            </div>
-            <v-card-actions>
-                <v-card-subtitle>
-                    PEOPLE : {{room.peopleNum}}
-                    <br>
-                    PRICE : {{room.price}}
-                    <br>
-                    TOTAL : {{room.roomTotal}}
-                    <br>
-                </v-card-subtitle>
-                <v-spacer></v-spacer>
-                    <div class="bookbtn" v-if="room.roomTotal <= 0">
-                        <v-btn
-                            outlined
-                            disabled
-                            dark
-                        >
-                            BOOK
-                        </v-btn>
-                    </div>
-                    <div class="bookbtn" v-else>
-                        <v-snackbar
-                            dark
-                            right
-                            color="purple darken-3"
-                            v-model="snackbar"
-                            :timeout="timeout"
+                    <v-card-subtitle>
+                        {{room.detail}}
+                    </v-card-subtitle>
+                    
+                </div>
+                </div>
+                <v-card-actions>
+                    <v-card-subtitle>
+                        PEOPLE : {{room.peopleNum}}
+                        <br>
+                        PRICE : {{room.price}} /Day.
+                        <br>
+                        TOTAL : {{room.roomTotal}}
+                        <br>
+                    </v-card-subtitle>
+                    <v-spacer></v-spacer>
+                        <div class="bookbtn" v-if="room.roomTotal <= 0">
+                            <v-btn
+                                outlined
+                                disabled
+                                dark
                             >
-                        {{ err }}
-                        <v-btn
-                            text
-                            @click="snackbar = false"
-                        >
-                            Close
-                        </v-btn>
-                        </v-snackbar>
-                        <v-btn
-                            outlined
-                            dark
-                            @click="handleBooking(room)"
-                        >
-                            BOOK
-                        </v-btn>
-                    </div>
-             </v-card-actions>
-        </v-img>    
-          </v-card>
+                                BOOK
+                            </v-btn>
+                        </div>
+                        <div class="bookbtn" v-else>
+                            <v-btn outlined dark @click="handleBooking(room)">BOOK</v-btn>
+                            <v-form ref="payment_form" v-model="payment_form">
+                                <v-row justify="center">
+                                    <v-dialog v-model="dialog" persistent max-width="600px">
+                                        <v-card>
+                                            <v-card-title>
+                                                <span class="headline">Payment</span>
+                                            </v-card-title>
+                                            <v-card-text>
+                                                <v-container>
+                                                    <small>*Accepted Credit and Debit Card</small>
+                                                    <v-row>
+
+                                                        <v-col cols="12">
+                                                            <v-text-field 
+                                                                outlined
+                                                                clearable
+                                                                color="purple darken-3"
+                                                                label="Card Number*" 
+                                                                required>
+                                                            </v-text-field>
+                                                        </v-col>
+
+                                                        <v-col cols="12" sm="6" md="6">
+                                                            <v-text-field 
+                                                                outlined
+                                                                clearable
+                                                                color="purple darken-3"
+                                                                label="Name on card" 
+                                                                required>
+                                                            </v-text-field>
+                                                        </v-col>
+
+                                                        <v-col cols="4" sm="3" md="3">
+                                                            <v-text-field
+                                                                outlined
+                                                                clearable
+                                                                color="purple darken-3"
+                                                                label="Month"
+                                                                required
+                                                            ></v-text-field>
+                                                        </v-col>
+
+                                                        <v-col cols="4" sm="3" md="3">
+                                                            <v-text-field
+                                                                outlined
+                                                                clearable
+                                                                color="purple darken-3"
+                                                                label="Year"
+                                                                required
+                                                            ></v-text-field>
+                                                        </v-col>
+
+                                                        <v-col cols="4" sm="3" md="3">
+                                                            <v-text-field
+                                                                outlined
+                                                                clearable
+                                                                color="purple darken-3"
+                                                                label="CVV"
+                                                                required
+                                                            ></v-text-field>
+                                                        </v-col>
+                                                        <v-col cols="12">
+                                                            <div class="payment_detail">
+                                                                <v-card flat>
+                                                                    <v-card-title>
+                                                                        <span class="headline">Payment</span>
+                                                                    </v-card-title>
+                                                                    <v-card-text>
+                                                                        <v-row>
+                                                                            <v-col cols="6">
+                                                                                <v-text-field
+                                                                                    v-model.lazy="BookNum"
+                                                                                    :rules="BookNumRules"
+                                                                                    outlined
+                                                                                    clearable
+                                                                                    color="purple darken-3"
+                                                                                    label="Number of rooms booked"
+                                                                                    required
+                                                                                ></v-text-field>
+                                                                            </v-col>   
+                                                                            <v-col cols="3">
+                                                                                <v-text-field
+                                                                                    flat
+                                                                                    disabled
+                                                                                    :value="'x' + Roomtype.price"
+                                                                                ></v-text-field>
+                                                                            </v-col>
+                                                                            <v-col cols="3">
+                                                                                <v-text-field
+                                                                                    v-model="TotalPrice"
+                                                                                    flat
+                                                                                    disabled
+                                                                                    :value="'=' + TotalPrice"
+                                                                                ></v-text-field>
+                                                                            </v-col>
+                                                                        </v-row>
+                                                                    </v-card-text>
+                                                                </v-card>
+                                                            </div>
+                                                        </v-col>
+
+                                                        <v-col cols="12">
+                                                            <v-checkbox
+                                                                color="purple darken-3"
+                                                                :rules="[v => !!v || 'You must agree to continue!']"
+                                                                label="Do you confirm?"
+                                                                required
+                                                            ></v-checkbox>
+                                                        </v-col>
+                                                    </v-row>
+                                                </v-container>
+                                            </v-card-text>
+                                            <v-card-actions>
+                                            <v-spacer></v-spacer>
+                                            <v-btn color="red darken-1" text @click="ClearForm()">Cancel</v-btn>
+                                            <v-btn color="purple darken-3" :disabled="!payment_form" text @click="Booking(room)">confirm</v-btn>
+                                            </v-card-actions>
+                                        </v-card>
+                                    </v-dialog>
+                                </v-row>
+                            </v-form>
+                        </div>
+                </v-card-actions>
+            </v-img>    
+        </v-card>
     
     </div>
 </template>
@@ -88,21 +188,92 @@ export default {
     name: "RoomDetail",
     data() {
         return {
-            Hostel      : Hostel[0].room,
-            user        : "",
-            snackbar    : false,
-            err         : '',
-            timeout     : 2000
+            payment_form    : true,
+            HostelRoomType  : Hostel[0].room,
+            Hotal           : Hostel[0],
+            user            : "test",
+            snackbar        : false,
+            timeout         : 2000,
+            dialog          : false,
+            TotalPrice      : '',
+            BookNum         : '',
+            Roomtype        : [],
+            BookNumRules    : [
+            BookNum => !!BookNum || 'BookNum is required',
+        ],
         }
     },
+
+     watch: {
+        BookNum: function () {
+            this.TotalPrice = this.BookNum * this.Roomtype.price
+        }
+    },
+
 
     methods:{
         handleBooking(room){
             if (!this.user){
-                this.snackbar = true
-                this.err      = "Please sign in"
+                this.$swal({
+                    toast: true,
+                    position: 'bottom-end',
+                    icon: 'error',
+                    title: 'Plsase Sign in',
+                    timerProgressBar: true,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             }else{
-                console.log(room)
+                this.dialog = true;
+                this.Roomtype = room;
+            }
+        },
+
+        ClearForm(){
+            this.BookNum = '';
+            this.dialog  = false;
+        },
+
+        Booking(){
+            //มีห้องว่างไม่พอ
+            //const HostelId  = this.Hotal.hotelId *ใช้เอาไว้เก็บค่า id ของโรงเเรม ตอนเสร้าง object จองห้อง จะเก็บ id ของโรงเเรม id tyoe ของห้อง เเละ id ของผู้จอง
+            const roomTotal = this.Roomtype.roomTotal;
+            const BoookRoom = this.BookNum
+            if (this.user){ 
+                if(roomTotal >= BoookRoom){
+                    //do function save to database
+                    //return status
+                    this.$swal({
+                        toast: true,
+                        position: 'bottom-end',
+                        icon: 'success',
+                        title: 'Booking Success',
+                        timerProgressBar: true,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                   this.$router.go(this.$router.currentRoute)
+                }else{
+                    this.$swal({
+                    toast: true,
+                    position: 'bottom-end',
+                    icon: 'error',
+                    title: 'Not enough room available',
+                    timerProgressBar: true,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                }
+            }else{
+                this.$swal({
+                    toast: true,
+                    position: 'bottom-end',
+                    icon: 'error',
+                    title: 'Not enough room available',
+                    timerProgressBar: true,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             }
         }
     }
