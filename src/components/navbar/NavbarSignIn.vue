@@ -10,7 +10,7 @@
             >
               <v-app-bar-nav-icon  class="hidden-sm-and-up" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
-              <v-toolbar-title>Hostel</v-toolbar-title>
+              <v-toolbar-title>The Hostel</v-toolbar-title>
 
               <v-spacer></v-spacer>
               <NavbarSignUp/>

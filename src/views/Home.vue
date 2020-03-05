@@ -1,13 +1,13 @@
 <template>
     <div class="home">
-        <Navbar/>
+        <HomeBackground/>
     </div>
 </template>
 
 <script>
-const Navbar = () => import('@/components/navbar/Navbar.vue')
+const HomeBackground            = () => import('../components/home/HomeBackground')
 export default {
     name : "home",
-    components : { Navbar },
+    components : { HomeBackground },
 }
 </script>

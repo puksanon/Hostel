@@ -23,13 +23,15 @@
                                 <v-row>
                                     <v-col cols="12" xs="12" sm="6" md="4">
                                         <v-text-field 
+                                            color="purple darken-3"
                                             label="First Name"
                                             required
                                         ></v-text-field>
                                     </v-col>
 
                                     <v-col cols="12" xs="12" sm="6" md="4">
-                                        <v-text-field 
+                                        <v-text-field
+                                            color="purple darken-3" 
                                             label="Last Name" 
                                             required
                                         ></v-text-field>
@@ -37,6 +39,7 @@
 
                                     <v-col cols="12" xs="12" sm="6" md="4">
                                         <v-text-field 
+                                            color="purple darken-3"
                                             label="Personal ID / Passport No." 
                                             required
                                         ></v-text-field>
@@ -44,6 +47,7 @@
 
                                     <v-col cols="12" xs="12" sm="6" md="4">
                                         <v-text-field
+                                            color="purple darken-3"
                                             v-model="email"
                                             :rules="emailRules"
                                             label="E-mail"
@@ -53,36 +57,41 @@
 
                                     <v-col cols="12" xs="12" sm="6" md="4">
                                         <v-text-field 
-                                        label="Phone number"
-                                        required
+                                            color="purple darken-3"
+                                            label="Phone number"
+                                            required
                                         ></v-text-field>
                                     </v-col>
 
                                     <v-col cols="12" xs="12" sm="6" md="6">
                                         <v-text-field 
-                                        label="Address"
-                                        required
+                                            color="purple darken-3"
+                                            label="Address"
+                                            required
                                         ></v-text-field>
                                     </v-col>
 
                                     <v-col cols="12" xs="12" sm="6" md="3">
                                         <v-text-field 
-                                        label="Country"
-                                        required
+                                            color="purple darken-3"
+                                            label="Country"
+                                            required
                                         ></v-text-field>
                                     </v-col>
 
                                     <v-col cols="12" xs="12" sm="6" md="3">
                                         <v-text-field 
-                                        label="City"
-                                        required
+                                            color="purple darken-3"
+                                            label="City"
+                                            required
                                         ></v-text-field>
                                     </v-col>
 
                                     <v-col cols="12" xs="12" sm="6" md="3">
                                         <v-text-field 
-                                        label="ZIP code"
-                                        required
+                                            color="purple darken-3"
+                                            label="ZIP code"
+                                            required
                                         ></v-text-field>
                                     </v-col>
                                 </v-row>
@@ -95,35 +104,39 @@
                                 <v-row>
                                     <v-col cols="12" xs="12" sm="6" md="4">
                                         <v-text-field 
-                                        label="Username"
-                                        counter="15"
-                                        :rules="usernameRules"
-                                        required
+                                            color="purple darken-3"
+                                            label="Username"
+                                            counter="15"
+                                            :rules="usernameRules"
+                                            required
                                         ></v-text-field>
                                     </v-col>
 
                                     <v-col cols="12" xs="12" sm="6" md="4">
                                         <v-text-field 
-                                        label="Password" 
-                                        type="password" 
-                                        counter="10"
-                                        :rules="passwordRules"
-                                        required
+                                            color="purple darken-3"
+                                            label="Password" 
+                                            type="password" 
+                                            counter="10"
+                                            :rules="passwordRules"
+                                            required
                                         ></v-text-field>
                                     </v-col>       
 
                                     <v-col cols="12" xs="12" sm="6" md="4">
                                         <v-text-field 
-                                        label="Confirm Password"
-                                        type="password" 
-                                        counter="10"
-                                        :rules="passwordRules"
-                                        required
+                                            color="purple darken-3"
+                                            label="Confirm Password"
+                                            type="password" 
+                                            counter="10"
+                                            :rules="passwordRules"
+                                            required
                                         ></v-text-field>
                                     </v-col>
 
                                     <v-col cols="12">
                                         <v-checkbox
+                                            color="purple darken-3"
                                             v-model="checkbox"
                                             :rules="checkboxRules"
                                             label="Do you confirm ?"

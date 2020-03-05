@@ -2,8 +2,9 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
-const NotFound = () => import("@/views/NotFound.vue");
-const Home     = () => import("@/views/Home.vue");
+const NotFound      = () => import("@/views/NotFound.vue");
+const Home          = () => import("@/views/Home.vue");
+const HostelDetail  = () => import('@/views/HostelDetail.vue')
 const routes = [
     {
       path: "*",
@@ -16,6 +17,10 @@ const routes = [
     {
       path: "/",
       component : Home
+    },
+    {
+      path: "/hostel_detail/:id",
+      component : HostelDetail
     },
     
   ];
