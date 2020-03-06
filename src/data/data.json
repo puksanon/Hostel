@@ -1,26 +1,138 @@
 {
-    "HostelList": 
-    [
-        {"id": "001" , "name": "Hostel_1" ,"owner": "Mr.A" ,"detail":"Hostel_1" , "price": "1000-25000" ,"type": "hotel", "time": "8.00 AM - 10.00 PM" ,"location": "Bangkok" ,"website": "https://hackmd.io/@EXISTING/front-end-test-intern" ,"images": [ { "img" :"https://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3"} , { "img" :"https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg"}]},
-        {"id": "002" , "name": "Hostel_2" ,"owner": "Mr.A" ,"detail":"Hostel_1" , "price": "1000-25000" ,"type": "hotel", "time": "8.00 AM - 10.00 PM" ,"location": "Bangkok" ,"website": "" ,"images": [ { "img" :"https://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3"} , { "img" :"https://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3"}]},
-        {"id": "003" , "name": "Hostel_3" ,"owner": "Mr.A" ,"detail":"Hostel_1" , "price": "1000-25000" ,"type": "hotel", "time": "8.00 AM - 10.00 PM" ,"location": "Bangkok" ,"website": "" ,"images": [ { "img" :"https://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3"} , { "img" :"https://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3"}]},
-        {"id": "004" , "name": "Hostel_4" ,"owner": "Mr.A" ,"detail":"Hostel_1" , "price": "1000-25000" ,"type": "hotel", "time": "8.00 AM - 10.00 PM" ,"location": "Bangkok" ,"website": "" ,"images": [ { "img" :"https://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3"} , { "img" :"https://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3"}]},
-        {"id": "005" , "name": "Hostel_5" ,"owner": "Mr.A" ,"detail":"Hostel_1" , "price": "1000-25000" ,"type": "hotel", "time": "8.00 AM - 10.00 PM" ,"location": "Bangkok" ,"website": "" ,"images": [ { "img" :"https://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3"} , { "img" :"https://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3"}]},
-        {"id": "006" , "name": "Hostel_6" ,"owner": "Mr.A" ,"detail":"Hostel_1" , "price": "1000-25000" ,"type": "hotel", "time": "8.00 AM - 10.00 PM" ,"location": "Bangkok" ,"website": "" ,"images": [ { "img" :"https://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3"} , { "img" :"https://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3"}]}
+    "HostelList": [
+        {
+          "id": "001",
+          "name": "Hostel_1",
+          "owner": "Mr.A",
+          "detail": "Hostel_1",
+          "price": "1000-25000",
+          "type": "hotel",
+          "time": "8.00 AM - 10.00 PM",
+          "location": "Bangkok",
+          "website": "https://hackmd.io/@EXISTING/front-end-test-intern",
+          "images":  [
+                {"img" :"https://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3"},
+                {"img" :"https://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3"},
+                {"img" :"https://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3"},
+                {"img" :"https://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3"}
+            ]
+        },
+
+        {
+            "id": "002",
+            "name": "Hostel_1",
+            "owner": "Mr.A",
+            "detail": "Hostel_1",
+            "price": "1000-25000",
+            "type": "hotel",
+            "time": "8.00 AM - 10.00 PM",
+            "location": "Bangkok",
+            "website": "https://hackmd.io/@EXISTING/front-end-test-intern",
+            "images":  [
+                {"img" :"https://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3"},
+                {"img" :"https://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3"}
+            ]
+          },
+
+          {
+            "id": "003",
+            "name": "Hostel_1",
+            "owner": "Mr.A",
+            "detail": "Hostel_1",
+            "price": "1000-25000",
+            "type": "hotel",
+            "time": "8.00 AM - 10.00 PM",
+            "location": "Bangkok",
+            "website": "https://hackmd.io/@EXISTING/front-end-test-intern",
+            "images":  [
+                {"img" :"https://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3"},
+                {"img" :"https://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3"}
+            ]
+          },
+
+          {
+            "id": "004",
+            "name": "Hostel_1",
+            "owner": "Mr.A",
+            "detail": "Hostel_1",
+            "price": "1000-25000",
+            "type": "hotel",
+            "time": "8.00 AM - 10.00 PM",
+            "location": "Bangkok",
+            "website": "https://hackmd.io/@EXISTING/front-end-test-intern",
+            "images":  [
+                {"img" :"https://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3"},
+                {"img" :"https://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3"}
+            ]
+          },
+
+          {
+            "id": "005",
+            "name": "Hostel_1",
+            "owner": "Mr.A",
+            "detail": "Hostel_1",
+            "price": "1000-25000",
+            "type": "hotel",
+            "time": "8.00 AM - 10.00 PM",
+            "location": "Bangkok",
+            "website": "https://hackmd.io/@EXISTING/front-end-test-intern",
+            "images":  [
+                {"img" :"https://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3"},
+                {"img" :"https://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3"}
+            ]
+          },
+
+          {
+            "id": "006",
+            "name": "Hostel_1",
+            "owner": "Mr.A",
+            "detail": "Hostel_1",
+            "price": "1000-25000",
+            "type": "hotel",
+            "time": "8.00 AM - 10.00 PM",
+            "location": "Bangkok",
+            "website": "https://hackmd.io/@EXISTING/front-end-test-intern",
+            "images":  [
+                {"img" :"https://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3"},
+                {"img" :"https://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3"}
+            ]
+          }
     ],
 
-    "Hostel":
-    [
+      "Hostel": [
         {
-            "hotelId" : "001",
-            "hotelname": "Hotel_1",
-            "status" : true,
-            "room": [
-                        {"id": "001", "name":"VIP" ,"roomTotal": "0" ,"price": "25000" ,"detail":"hello vip" ,"peopleNum":"2-4" ,"room_img": "https://cdn.vuetifyjs.com/images/carousel/bird.jpg"},
-                        {"id": "002", "name":"Normal" ,"roomTotal": "10","price": "10000" ,"detail":"hello normal" ,"peopleNum":"2-4" ,"room_img":"https://cdn.vuetifyjs.com/images/carousel/bird.jpg"},
-                        {"id": "003", "name":"Common" ,"roomTotal": "10","price": "5000" ,"detail":"hello common" ,"peopleNum":"2-4" ,"room_img":"https://cdn.vuetifyjs.com/images/carousel/bird.jpg"}
-                    ]    
+          "hotelId": "001",
+          "hotelname": "Hotel_1",
+          "status": true,
+          "room": [
+            {
+              "id": "001",
+              "name": "VIP",
+              "roomTotal": "0",
+              "price": "25000",
+              "detail": "hello vip",
+              "peopleNum": "2-4",
+              "room_img": "https://cdn.vuetifyjs.com/images/carousel/bird.jpg"
+            },
+            {
+              "id": "002",
+              "name": "Normal",
+              "roomTotal": "10",
+              "price": "10000",
+              "detail": "hello normal",
+              "peopleNum": "2-4",
+              "room_img": "https://cdn.vuetifyjs.com/images/carousel/bird.jpg"
+            },
+            {
+              "id": "003",
+              "name": "Common",
+              "roomTotal": "10",
+              "price": "5000",
+              "detail": "hello common",
+              "peopleNum": "2-4",
+              "room_img": "https://cdn.vuetifyjs.com/images/carousel/bird.jpg"
+            }
+          ]
         }
-
     ]
 }

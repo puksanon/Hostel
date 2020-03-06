@@ -12,7 +12,7 @@
                     </v-list-item>
 
                     <v-img
-                    :src="hostel.images.img1"
+                    :src="hostel.images"
                     height="194"
                     ></v-img>
 
@@ -25,13 +25,7 @@
                     LOCATION {{ hostel.location }}
                     </v-card-subtitle>
                     <v-card-actions>
-                    <v-btn
-                        text
-                        color="purple darken-3"
-                        :to="'/hostel_detail/'+hostel.id"
-                    >
-                        Detail
-                    </v-btn>
+                        <v-spacer></v-spacer>
                     <v-btn
                         text
                         color="purple darken-3"
@@ -39,9 +33,12 @@
                     >
                         WEBSITE
                     </v-btn>
-                    <v-spacer></v-spacer>
-                    <v-btn icon>
-                        <v-icon color="purple darken-3">mdi-heart</v-icon>
+                    <v-btn
+                        text
+                        color="purple darken-3"
+                        :to="'/hostel_detail/'+hostel.id"
+                    >
+                        Detail
                     </v-btn>
                     </v-card-actions>
                 </v-card>
@@ -52,14 +49,24 @@
 </template>
 
 <script>
-import { HostelList } from "../../data/data.json";
+
 export default {
     name: "CardHostel",
     data() {
         return {
-        HostelList : HostelList,
+        HostelList : [] ,
         search : ''
         };
     },
+
+    async created() {
+        await this.axios.get('https://15d36ad4-97b7-4750-958f-8848ceaca773.mock.pstmn.io/hostel/list').then(res => {
+            this.HostelList = res.data
+        }).catch(res =>{
+            console.error(res)
+        })
+        
+    },
+
 }
 </script>

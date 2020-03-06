@@ -3,7 +3,10 @@ import App      from './App.vue'
 import vuetify  from './plugins/vuetify';
 import router from "./router";
 import VueSweetalert2 from 'vue-sweetalert2';
- 
+import VueAxios from 'vue-axios'
+import Axios from 'axios'
+
+Vue.use(VueAxios, Axios)
 Vue.use(VueSweetalert2);
 Vue.use(router)
 

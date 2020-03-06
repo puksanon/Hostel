@@ -2,9 +2,17 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
+//other page
 const NotFound      = () => import("@/views/NotFound.vue");
 const Home          = () => import("@/views/Home.vue");
 const HostelDetail  = () => import('@/views/HostelDetail.vue')
+
+//admin 
+const AdminDashboard= () => import('@/views/admin/AdminDashboard.vue')
+
+//user
+
+
 const routes = [
     {
       path: "*",
@@ -21,6 +29,10 @@ const routes = [
     {
       path: "/hostel_detail/:id",
       component : HostelDetail
+    },
+    {
+      path: "/admin/dashboard",
+      component : AdminDashboard
     },
     
   ];

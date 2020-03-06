@@ -7,7 +7,7 @@
                         <v-btn color="purple darken-3" text v-on="on">SIGN UP</v-btn>
                     </template>
                     <v-card>
-                        <v-toolbar dark color="purple darken-3">
+                        <v-toolbar height="100" dark color="purple darken-3">
                         <v-btn icon dark @click="dialog = false">
                             <v-icon>mdi-close</v-icon>
                         </v-btn>
@@ -23,6 +23,7 @@
                                 <v-row>
                                     <v-col cols="12" xs="12" sm="6" md="4">
                                         <v-text-field 
+                                            outlined
                                             color="purple darken-3"
                                             label="First Name"
                                             required
@@ -31,6 +32,7 @@
 
                                     <v-col cols="12" xs="12" sm="6" md="4">
                                         <v-text-field
+                                            outlined
                                             color="purple darken-3" 
                                             label="Last Name" 
                                             required
@@ -39,6 +41,7 @@
 
                                     <v-col cols="12" xs="12" sm="6" md="4">
                                         <v-text-field 
+                                            outlined
                                             color="purple darken-3"
                                             label="Personal ID / Passport No." 
                                             required
@@ -47,6 +50,7 @@
 
                                     <v-col cols="12" xs="12" sm="6" md="4">
                                         <v-text-field
+                                            outlined
                                             color="purple darken-3"
                                             v-model="email"
                                             :rules="emailRules"
@@ -57,14 +61,26 @@
 
                                     <v-col cols="12" xs="12" sm="6" md="4">
                                         <v-text-field 
+                                            outlined
                                             color="purple darken-3"
                                             label="Phone number"
                                             required
                                         ></v-text-field>
                                     </v-col>
 
+                                    <v-col cols="12" xs="12" sm="6" md="4">
+                                        <v-text-field 
+                                            outlined
+                                            color="purple darken-3"
+                                            label="Birthday"
+                                            placeholder="DD/MM/YYYY"
+                                            required
+                                        ></v-text-field>
+                                    </v-col>
+
                                     <v-col cols="12" xs="12" sm="6" md="6">
                                         <v-text-field 
+                                            outlined
                                             color="purple darken-3"
                                             label="Address"
                                             required
@@ -73,6 +89,7 @@
 
                                     <v-col cols="12" xs="12" sm="6" md="3">
                                         <v-text-field 
+                                            outlined
                                             color="purple darken-3"
                                             label="Country"
                                             required
@@ -81,6 +98,7 @@
 
                                     <v-col cols="12" xs="12" sm="6" md="3">
                                         <v-text-field 
+                                            outlined
                                             color="purple darken-3"
                                             label="City"
                                             required
@@ -89,6 +107,7 @@
 
                                     <v-col cols="12" xs="12" sm="6" md="3">
                                         <v-text-field 
+                                            outlined
                                             color="purple darken-3"
                                             label="ZIP code"
                                             required
@@ -104,6 +123,7 @@
                                 <v-row>
                                     <v-col cols="12" xs="12" sm="6" md="4">
                                         <v-text-field 
+                                            outlined
                                             color="purple darken-3"
                                             label="Username"
                                             counter="15"
@@ -114,6 +134,7 @@
 
                                     <v-col cols="12" xs="12" sm="6" md="4">
                                         <v-text-field 
+                                            outlined
                                             color="purple darken-3"
                                             label="Password" 
                                             type="password" 
@@ -125,6 +146,7 @@
 
                                     <v-col cols="12" xs="12" sm="6" md="4">
                                         <v-text-field 
+                                            outlined
                                             color="purple darken-3"
                                             label="Confirm Password"
                                             type="password" 

@@ -12,7 +12,7 @@
             flat
             dark
             style="border-radius: 0;"
-            class="mb-1"
+            class="mb-5"
             height="200"
         >
             <v-img
@@ -191,7 +191,7 @@ export default {
             payment_form    : true,
             HostelRoomType  : Hostel[0].room,
             Hotal           : Hostel[0],
-            user            : "test",
+            user            : [],
             snackbar        : false,
             timeout         : 2000,
             dialog          : false,
@@ -202,6 +202,15 @@ export default {
             BookNum => !!BookNum || 'BookNum is required',
         ],
         }
+    },
+
+    async created() {
+        await this.axios.get('https://d0ff12cd-62ae-4ba5-853d-6e295dd986a8.mock.pstmn.io/verify').then(res => {
+            this.user = res.data
+        }).catch(res =>{
+            console.error(res)
+        })
+        
     },
 
      watch: {
@@ -239,30 +248,46 @@ export default {
             //const HostelId  = this.Hotal.hotelId *ใช้เอาไว้เก็บค่า id ของโรงเเรม ตอนเสร้าง object จองห้อง จะเก็บ id ของโรงเเรม id tyoe ของห้อง เเละ id ของผู้จอง
             const roomTotal = this.Roomtype.roomTotal;
             const BoookRoom = this.BookNum
-            if (this.user){ 
-                if(roomTotal >= BoookRoom){
-                    //do function save to database
-                    //return status
+            const user      = this.user
+            if (user)
+            { 
+                if(user.permission === 'user')
+                {
+                    if(roomTotal >= BoookRoom)
+                    {
+                        //do function save to database
+                        //return status
+                        this.$swal({
+                            toast: true,
+                            position: 'bottom-end',
+                            icon: 'success',
+                            title: 'Booking Success',
+                            timerProgressBar: true,
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                            this.$router.go(this.$router.currentRoute)
+                    }else{
+                            this.$swal({
+                            toast: true,
+                            position: 'bottom-end',
+                            icon: 'error',
+                            title: 'Not enough room available',
+                            timerProgressBar: true,
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                }else{
                     this.$swal({
                         toast: true,
                         position: 'bottom-end',
-                        icon: 'success',
-                        title: 'Booking Success',
+                        icon: 'error',
+                        title: 'You are not user',
                         timerProgressBar: true,
                         showConfirmButton: false,
                         timer: 1500
                     })
-                   this.$router.go(this.$router.currentRoute)
-                }else{
-                    this.$swal({
-                    toast: true,
-                    position: 'bottom-end',
-                    icon: 'error',
-                    title: 'Not enough room available',
-                    timerProgressBar: true,
-                    showConfirmButton: false,
-                    timer: 1500
-                })
                 }
             }else{
                 this.$swal({
