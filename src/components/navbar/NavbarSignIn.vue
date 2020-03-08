@@ -72,8 +72,8 @@ export default {
     data:() => ({
         dialog      : false,
         signin_form : true,
-        email    : 'kittipit22@hotmail.com',
-        password    : '123456',
+        email       : '',
+        password    : '',
         emailRules: [
             email => !!email || 'E-mail is required',
             email => /.+@.+\..+/.test(email) || 'E-mail must be valid',
@@ -103,6 +103,7 @@ export default {
             this.password = ''
         },
 
+        //finish can login with email and passwod auth form firebase
         // SignIn(){
         //     const email       = this.email;
         //     const password    = this.password;

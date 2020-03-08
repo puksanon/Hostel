@@ -118,10 +118,32 @@
                                                             <div class="payment_detail">
                                                                 <v-card flat>
                                                                     <v-card-title>
-                                                                        <span class="headline">Payment</span>
+                                                                        <span class="headline">DETAIL</span>
                                                                     </v-card-title>
                                                                     <v-card-text>
                                                                         <v-row>
+                                                                            <v-col cols="6">
+                                                                                <v-text-field
+                                                                                    v-model.lazy="DateStart"
+                                                                                    :rules="BookNumRules"
+                                                                                    outlined
+                                                                                    clearable
+                                                                                    color="purple darken-3"
+                                                                                    label="Date Start"
+                                                                                    required
+                                                                                ></v-text-field>
+                                                                            </v-col>   
+                                                                            <v-col cols="6">
+                                                                                <v-text-field
+                                                                                    v-model.lazy="DateEnd"
+                                                                                    :rules="BookNumRules"
+                                                                                    outlined
+                                                                                    clearable
+                                                                                    color="purple darken-3"
+                                                                                    label="Date End"
+                                                                                    required
+                                                                                ></v-text-field>
+                                                                            </v-col>   
                                                                             <v-col cols="6">
                                                                                 <v-text-field
                                                                                     v-model.lazy="BookNum"
@@ -197,13 +219,17 @@ export default {
             dialog          : false,
             TotalPrice      : '',
             BookNum         : '',
+            DateStart       : '',
+            DateEnd         : '',
             Roomtype        : [],
             BookNumRules    : [
-            BookNum => !!BookNum || 'BookNum is required',
+            BookNum => !!BookNum || 'input is required',
         ],
         }
     },
 
+    //cheack permission and vertify user 
+    //*ถ้าเปลี่ยนไปใช้ firebase auth ตรงนี้ก็จะกลายเป็นการเรียกขอมูล user ใน vuex มาใช้เเทนเพื่อตรวจสอบข้อมูลของผู้ใช้ก่อนทำรายการ
     async created() {
         await this.axios.get('https://d0ff12cd-62ae-4ba5-853d-6e295dd986a8.mock.pstmn.io/verify').then(res => {
             this.user = res.data

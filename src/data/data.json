@@ -135,5 +135,116 @@
             }
           ]
         }
+    ],
+
+    "userList": [
+      { 
+        "id"        : "001",
+        "fname"     : "test",
+        "lname"     : "test",
+        "pid"       : "1234567891234",
+        "email"     : "test@test.com",
+        "username"  : "test",
+        "password"  : "1234",
+        "birthday"  : "19/05/2542",
+        "country"   : "bangkok",
+        "city"      : "thung khru",
+        "zipcode"   : "10140",
+        "phone"     : "0123456789",  
+        "address"   : "123/12",
+        "permission": "user",
+        "avatar"    : "https://cdn.vuetifyjs.com/images/carousel/bird.jpg"
+      },
+
+      { 
+        "id"        : "002",
+        "fname"     : "test",
+        "lname"     : "test",
+        "pid"       : "1234567891234",
+        "email"     : "test@test.com",
+        "username"  : "test",
+        "password"  : "1234",
+        "birthday"  : "19/05/2542",
+        "country"   : "bangkok",
+        "city"      : "thung khru",
+        "zipcode"   : "10140",
+        "phone"     : "0123456789",  
+        "address"   : "123/12",
+        "permission": "user",
+        "avatar"    : "https://cdn.vuetifyjs.com/images/carousel/bird.jpg"
+      },
+
+      { 
+        "id"        : "003",
+        "fname"     : "test",
+        "lname"     : "test",
+        "pid"       : "1234567891234",
+        "email"     : "test@test.com",
+        "username"  : "test",
+        "password"  : "1234",
+        "birthday"  : "19/05/2542",
+        "country"   : "bangkok",
+        "city"      : "thung khru",
+        "zipcode"   : "10140",
+        "phone"     : "0123456789",  
+        "address"   : "123/12",
+        "permission": "user",
+        "avatar"    : "https://cdn.vuetifyjs.com/images/carousel/bird.jpg"
+      },
+
+
+      { 
+        "id"        : "004",
+        "fname"     : "test",
+        "lname"     : "test",
+        "pid"       : "1234567891234",
+        "email"     : "test@test.com",
+        "username"  : "test",
+        "password"  : "1234",
+        "birthday"  : "19/05/2542",
+        "country"   : "bangkok",
+        "city"      : "thung khru",
+        "zipcode"   : "10140",
+        "phone"     : "0123456789",  
+        "address"   : "123/12",
+        "permission": "user",
+        "avatar"    : "https://cdn.vuetifyjs.com/images/carousel/bird.jpg"
+      },
+
+      { 
+        "id"        : "005",
+        "fname"     : "test",
+        "lname"     : "test",
+        "pid"       : "1234567891234",
+        "email"     : "test@test.com",
+        "username"  : "test",
+        "password"  : "1234",
+        "birthday"  : "19/05/2542",
+        "country"   : "bangkok",
+        "city"      : "thung khru",
+        "zipcode"   : "10140",
+        "phone"     : "0123456789",  
+        "address"   : "123/12",
+        "permission": "user",
+        "avatar"    : "https://cdn.vuetifyjs.com/images/carousel/bird.jpg"
+      },
+
+      { 
+        "id"        : "006",
+        "fname"     : "test",
+        "lname"     : "test",
+        "pid"       : "1234567891234",
+        "email"     : "test@test.com",
+        "username"  : "test",
+        "password"  : "1234",
+        "birthday"  : "19/05/2542",
+        "country"   : "bangkok",
+        "city"      : "thung khru",
+        "zipcode"   : "10140",
+        "phone"     : "0123456789",  
+        "address"   : "123/12",
+        "permission": "user",
+        "avatar"    : "https://cdn.vuetifyjs.com/images/carousel/bird.jpg"
+      }
     ]
 }

@@ -192,15 +192,15 @@ export default {
             console.log(index)
             // get api to delete 
             // return prop
-                this.$swal({
-                    toast: true,
-                    position: 'bottom-end',
-                    icon: 'success',
-                    title: 'Delete Hostel success',
-                    timerProgressBar: true,
-                    showConfirmButton: false,
-                    timer: 1500
-                });
+            this.$swal({
+                toast: true,
+                position: 'bottom-end',
+                icon: 'success',
+                title: 'Delete Hostel success',
+                timerProgressBar: true,
+                showConfirmButton: false,
+                timer: 1500
+            });
         },
 
         close () {

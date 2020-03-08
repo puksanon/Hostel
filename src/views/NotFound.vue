@@ -1,6 +1,8 @@
 <template>
   <div class="NotFound">
-    <h1>(404) Page NotFound</h1>
+    <v-container>
+        <h1>(404) PAGE NOT FOUND </h1>
+    </v-container>
   </div>
 </template>
 

@@ -247,9 +247,9 @@ export default {
     name : "Navbar",
     components: { NavBarSignin },
     data : () => ({
-       user          : {"username": "test" , "permission" : "admin" },
+       user  : {"username": "test" , "permission" : "admin" },
     //   currentUser   : '',
-      sidebar       : false,
+      sidebar: false,
     }),
 
     // created(){
@@ -275,6 +275,11 @@ export default {
         //             console.log(err)
         //     })
         // }
+
+        Signout(){
+            this.user = {}
+        }
+
     }
 
 }
