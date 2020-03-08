@@ -1,35 +1,45 @@
 import Vue from "vue";
 import Vuex from "vuex";
-const { database } = require('../firebase/firebaseInit')
+const fb = require('../firebase/firebaseInit')
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+fb.auth.onAuthStateChanged(user => {
+    if (user) {
+        store.commit('setCurrentUser', user)
+        store.dispatch('fetchUserProfile')
+
+        fb.usersCollection.doc(user.uid).onSnapshot(doc => {
+            store.commit('setUserProfile', doc.data())
+        })
+    }
+})
+
+export const store = new Vuex.Store({
     state:{
         currentUser: null,
-        userProfile: []
+        userProfile: {},
     },
 
     actions: {
         clearData({ commit }) {
             commit('setCurrentUser', null)
-            commit('setUserProfile', [])
+            commit('setUserProfile', {})
         },
         fetchUserProfile({ commit, state }) {
-            database.ref('users/' + state.currentUser.uid).once('value').then(res => {
-                commit('setUserProfile', res.val())
+            fb.usersCollection.doc(state.currentUser.uid).get().then(res => {
+                commit('setUserProfile', res.data())
             }).catch(err => {
                 console.log(err)
             })
-        }
+        },
     },
 
     mutations: {
-         setCurrentUser(state, val) {
-             state.currentUser = val
+        setCurrentUser(state, val) {
+            state.currentUser = val
         },
-         setUserProfile(state, val) {
-             state.userProfile = val
-            // console.log(state.userProfile , val)
-        }
+        setUserProfile(state, val) {
+            state.userProfile = val
+        },
     }
 });

@@ -1,21 +1,24 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
-import 'firebase/database'
 import 'firebase/firestore'
-import 'firebase/storage'
+import 'firebase/database'
 import firebaseConfig from './firebaseConfig'
 
 firebase.initializeApp(firebaseConfig)
 
 // firebase utils
-const database = firebase.database()
+const database = firebase.firestore()
 const auth = firebase.auth()
 const currentUser = auth.currentUser
 
+
+// firebase collections
+const usersCollection = database.collection('users')
 
 export { 
     database,
     auth,
     currentUser,
+    usersCollection
 }
 

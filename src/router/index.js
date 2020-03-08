@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-// import { currentUser } from '../firebase/firebaseInit'
+const fb = require('../firebase/firebaseInit')
 Vue.use(VueRouter);
 
 //other page
@@ -37,6 +37,7 @@ const router = new VueRouter({
     {
       path: "/admin/dashboard",
       component : AdminDashboard,
+     
     },
     {
       path: "/admin/managehostel",
@@ -49,4 +50,17 @@ const router = new VueRouter({
   ]
 });
 
-  export default router;
+router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some(x => x.meta.requiresAuth)
+  const currentUser = fb.currentUser
+
+  if (requiresAuth && !currentUser) {
+      next('/login')
+  } else if (requiresAuth && currentUser) {
+      next()
+  } else {
+      next()
+  }
+})
+
+export default router

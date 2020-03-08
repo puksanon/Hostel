@@ -188,7 +188,7 @@
 </template>
 
 <script>
-    import { database , auth } from '../../firebase/firebaseInit'
+    import { usersCollection , auth } from '../../firebase/firebaseInit'
 
 export default {
     name : "NavbarSignUp",
@@ -258,8 +258,7 @@ export default {
             if (this.password === this.cfpassword ){
                 await auth.createUserWithEmailAndPassword(this.email, this.password).then((res) => {
                     const Uid       = res.user.uid 
-                    const UserRef   = database.ref('users/' + Uid)
-                    UserRef.set({
+                    usersCollection.doc(Uid).set({
                         fname       : this.fname,
                         lname       : this.lname,
                         pid         : this.pid,
