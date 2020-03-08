@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+// import { currentUser } from '../firebase/firebaseInit'
 Vue.use(VueRouter);
 
 //other page
@@ -9,11 +10,14 @@ const HostelDetail  = () => import('@/views/HostelDetail.vue')
 
 //admin 
 const AdminDashboard= () => import('@/views/admin/AdminDashboard.vue')
-
+const ManageHostel  = () => import('@/views/admin/ManageHostel.vue')
+const ManageUser  = () => import('@/views/admin/ManageUser.vue')
 //user
 
-
-const routes = [
+  
+const router = new VueRouter({
+  mode: "history",
+  routes :[
     {
       path: "*",
       component: NotFound
@@ -32,14 +36,17 @@ const routes = [
     },
     {
       path: "/admin/dashboard",
-      component : AdminDashboard
+      component : AdminDashboard,
     },
-    
-  ];
-  
-  const router = new VueRouter({
-    mode: "history",
-    routes
-  });
-  
+    {
+      path: "/admin/managehostel",
+      component : ManageHostel,
+    },
+    {
+      path: "/admin/manageuser",
+      component : ManageUser,
+    },
+  ]
+});
+
   export default router;

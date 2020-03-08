@@ -3,6 +3,7 @@
         {
           "id": "001",
           "name": "Hostel_1",
+          "ownerId": "Mr.A",
           "owner": "Mr.A",
           "detail": "Hostel_1",
           "price": "1000-25000",

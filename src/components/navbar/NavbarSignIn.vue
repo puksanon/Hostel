@@ -28,10 +28,9 @@
                                         <v-col cols="12">
                                             <v-text-field 
                                             color="purple darken-3"
-                                            v-model="username"
-                                            label="Username"
-                                            counter="15"
-                                            :rules="usernameRules"
+                                            v-model="email"
+                                            label="email"
+                                            :rules="emailRules"
                                             required
                                             ></v-text-field>
                                         </v-col>
@@ -41,7 +40,7 @@
                                             v-model="password"
                                             label="Password" 
                                             type="password" 
-                                            counter="10"
+                                            counter="15"
                                             :rules="passwordRules"
                                             required
                                             ></v-text-field>
@@ -52,7 +51,7 @@
                                 <v-card-actions>
                                     <v-spacer></v-spacer>
                                     <v-btn dark color="purple darken-3" text @click="dialog = false">Close</v-btn>
-                                    <v-btn color="purple darken-3" :disabled="!signin_form" text :to="'/dashboard'">Sign in</v-btn>
+                                    <v-btn color="purple darken-3" :disabled="!signin_form" text @click="SignIn()">Sign in</v-btn>
                                 </v-card-actions>
                             </v-card>
                         </v-dialog>
@@ -65,6 +64,7 @@
 
 <script>
 const NavbarSignUp = () => import('./NavbarSignUp')
+// import { auth } from '../../firebase/firebaseInit'
 
 export default {
     name : "NavbarSignIn",
@@ -72,15 +72,16 @@ export default {
     data:() => ({
         dialog      : false,
         signin_form : true,
-        username    : '',
-        password    : '',
-        usernameRules: [
-            username => !!username || 'username is required',
-            username => (username && username.length <= 15) || 'username must be less than 15 characters',
+        email    : 'kittipit22@hotmail.com',
+        password    : '123456',
+        emailRules: [
+            email => !!email || 'E-mail is required',
+            email => /.+@.+\..+/.test(email) || 'E-mail must be valid',
         ],
         passwordRules: [
-            password => !!password || 'username is required',
-            password => (password && password.length <= 10) || 'username must be less than 10 characters',
+            password => !!password || 'Password is required',
+            password => (password && password.length >= 6) || 'Password must be more than 6 characters',
+            password => (password && password.length <= 15) || 'Password must be less than 15 characters',
         ],
     }),
 
@@ -91,11 +92,36 @@ export default {
     },
 
     methods:{
-      validate () {
-        if (this.$refs.signin_form.validate()) {
-          this.snackbar = true
-        }
-      },
+        validate () {
+            if (this.$refs.signin_form.validate()) {
+            this.snackbar = true
+            }
+        },
+
+        reset_form(){
+            this.email    = '',
+            this.password = ''
+        },
+
+        // SignIn(){
+        //     const email       = this.email;
+        //     const password    = this.password;
+        //         auth.signInWithEmailAndPassword(email, password).then((user) => {
+        //             this.$store.commit('setCurrentUser', user.user)
+        //             this.$store.dispatch('fetchUserProfile')
+        //             this.$router.push({name: 'AdminDashboardome'})
+        //     }).catch((err) => {
+        //             this.$swal({
+        //                 toast: true,
+        //                 position: 'bottom-end',
+        //                 icon: 'error',
+        //                 title: err.message,
+        //                 timerProgressBar: true,
+        //                 showConfirmButton: false,
+        //                 timer: 3000
+        //             });
+        //     });
+        // }
     }
 }
 </script>

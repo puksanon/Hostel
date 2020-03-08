@@ -266,7 +266,7 @@ export default {
                             showConfirmButton: false,
                             timer: 1500
                         })
-                            this.$router.go(this.$router.currentRoute)
+                            this.$router.push('/')
                     }else{
                             this.$swal({
                             toast: true,
