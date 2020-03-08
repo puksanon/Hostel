@@ -27,7 +27,7 @@
                         <v-card>
                             <v-form class="hostel_form" refs="hostel_form" v-model="hostel_form">
                                 <v-card-title>
-                                <span class="headline">{{ formTitle }}</span>
+                                <span>{{ formTitle }}</span>
                                 </v-card-title>
 
                                 <v-card-text>

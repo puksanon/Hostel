@@ -7,6 +7,8 @@ Vue.use(VueRouter);
 const NotFound      = () => import("@/views/NotFound.vue");
 const Home          = () => import("@/views/Home.vue");
 const HostelDetail  = () => import('@/views/HostelDetail.vue')
+const Login         = () => import('@/views/Signin')
+const SignUp        = () => import('@/views/Signup')
 
 //admin 
 const AdminDashboard= () => import('@/views/admin/AdminDashboard.vue')
@@ -20,6 +22,7 @@ const router = new VueRouter({
   routes :[
     {
       path: "*",
+      name: "NotFound",
       component: NotFound
     },
     {
@@ -28,31 +31,54 @@ const router = new VueRouter({
     },
     {
       path: "/",
+      name: "Home",
       component : Home
     },
     {
+      path: "/login",
+      name: "Login",
+      component: Login
+    },
+    {
+      path: "/signup",
+      name: "SignUp",
+      component: SignUp
+    },
+    {
       path: "/hostel_detail/:id",
+      name : "HostelDetail",
       component : HostelDetail
     },
     {
       path: "/admin/dashboard",
+      name:"AdminDashboard",
       component : AdminDashboard,
-     
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: "/admin/managehostel",
+      name: "ManageHostel",
       component : ManageHostel,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: "/admin/manageuser",
+      name: "ManageUser",
       component : ManageUser,
+      meta: {
+        requiresAuth: true
+      }
     },
   ]
 });
 
 router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some(x => x.meta.requiresAuth)
-  const currentUser = fb.currentUser
+  const currentUser = fb.auth.currentUser
 
   if (requiresAuth && !currentUser) {
       next('/login')

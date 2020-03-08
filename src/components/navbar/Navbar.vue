@@ -1,7 +1,22 @@
 <template>
     <div class="Navbar">
         <div class="navbar_signin" v-if="!user.permission">
-            <NavBarSignin/>
+            <v-card class="mx-auto overflow-hidden" >
+                <v-app-bar
+                color="transparent"
+                fixed
+                flat
+                style="border-radius: 0;"
+                height="100"
+                dark
+                >
+                <v-toolbar-title>The Hostel</v-toolbar-title>
+
+                <v-spacer></v-spacer>
+                <v-btn text class="mr-2 hidden-sm-and-down" to="/login">SIGN IN</v-btn>
+                <v-btn text class="mr-2 hidden-sm-and-down" to="/signup">SING UP</v-btn>
+                </v-app-bar>
+            </v-card>   
         </div>
         <div class="admin_nav" v-else-if="user.permission === 'admin'">
             <v-card class="mx-auto overflow-hidden">
@@ -240,45 +255,34 @@
 </template>
 
 <script>
-const NavBarSignin = () => import('./NavbarSignIn')
-// const fb = require('../../firebase/firebaseInit')
-
+const fb = require('../../firebase/firebaseInit')
 export default {
     name : "Navbar",
-    components: { NavBarSignin },
     data : () => ({
-       user  : {"username": "test" , "permission" : "admin" },
-    //   currentUser   : '',
-      sidebar: false,
+        user  : [],
+        currentUser   : '',
+        sidebar: false,
     }),
 
-    // created(){
-    //     this.cheack();
-    // },
-
-    
+    created(){
+        if(this.$store.state.currentUser){
+            const currentUser    = this.$store.state.currentUser.uid
+            const user           = this.$store.state.userProfile
+            this.user = user
+            this.currentUser = currentUser
+        }
+    },
 
     methods: {
-        // cheack(){
-        //     if (this.$store.state.userProfile && this.$store.state.currentUser){
-        //         console.log(this.$store.state.userProfile)
-        //         this.user           = this.$store.state.userProfile
-        //         this.currentUser    = this.$store.state.currentUser.uid
-        //     }
-        // },
-
-        // Signout(){
-        //     fb.auth.signOut().then(() => {
-        //             this.$store.dispatch('clearData')
-        //             this.$router.go(this.$router.currentRoute)
-        //     }).catch(err => {
-        //             console.log(err)
-        //     })
-        // }
-
         Signout(){
-            this.user = {}
-        }
+            fb.auth.signOut().then(() => {
+                    this.$store.dispatch('clearData')
+                    this.$router.push('/')
+            }).catch(err => {
+                    console.log(err)
+            })
+        },
+
 
     }
 

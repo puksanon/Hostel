@@ -6,7 +6,7 @@
                 <v-card max-width="370" class="mx-auto">
                     <v-list-item>
                     <v-list-item-content>
-                        <v-list-item-title class="headline">{{ hostel.name }}</v-list-item-title>
+                        <v-list-item-title>{{ hostel.name }}</v-list-item-title>
                         <v-list-item-subtitle>by {{hostel.owner}} </v-list-item-subtitle>
                     </v-list-item-content>
                     </v-list-item>

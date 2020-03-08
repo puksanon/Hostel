@@ -6,11 +6,9 @@ import firebaseConfig from './firebaseConfig'
 
 firebase.initializeApp(firebaseConfig)
 
-// firebase utils
 const database = firebase.firestore()
 const auth = firebase.auth()
 const currentUser = auth.currentUser
-
 
 // firebase collections
 const usersCollection = database.collection('users')

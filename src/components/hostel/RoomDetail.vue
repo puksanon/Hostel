@@ -22,7 +22,6 @@
                 <div class="d-flex flex-no-wrap justify-space-between">
                 <div>
                     <v-card-title
-                    class="headline"
                     v-text="room.name"
                     ></v-card-title>
 
@@ -118,7 +117,7 @@
                                                             <div class="payment_detail">
                                                                 <v-card flat>
                                                                     <v-card-title>
-                                                                        <span class="headline">DETAIL</span>
+                                                                        <span>DETAIL</span>
                                                                     </v-card-title>
                                                                     <v-card-text>
                                                                         <v-row>
@@ -222,6 +221,7 @@ export default {
             DateStart       : '',
             DateEnd         : '',
             Roomtype        : [],
+            currentUser     : null,
             BookNumRules    : [
             BookNum => !!BookNum || 'input is required',
         ],
@@ -230,13 +230,13 @@ export default {
 
     //cheack permission and vertify user 
     //*ถ้าเปลี่ยนไปใช้ firebase auth ตรงนี้ก็จะกลายเป็นการเรียกขอมูล user ใน vuex มาใช้เเทนเพื่อตรวจสอบข้อมูลของผู้ใช้ก่อนทำรายการ
-    async created() {
-        await this.axios.get('https://d0ff12cd-62ae-4ba5-853d-6e295dd986a8.mock.pstmn.io/verify').then(res => {
-            this.user = res.data
-        }).catch(res =>{
-            console.error(res)
-        })
-        
+    created() {
+        if(this.$store.state.currentUser){
+            const currentUser    = this.$store.state.currentUser.uid
+            const user           = this.$store.state.userProfile
+            this.user = user
+            this.currentUser = currentUser
+        }
     },
 
      watch: {
@@ -248,7 +248,7 @@ export default {
 
     methods:{
         handleBooking(room){
-            if (!this.user){
+            if (!this.user || !this.currentUser){
                 this.$swal({
                     toast: true,
                     position: 'bottom-end',

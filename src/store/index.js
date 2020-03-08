@@ -5,11 +5,13 @@ Vue.use(Vuex);
 
 fb.auth.onAuthStateChanged(user => {
     if (user) {
+        //console.log(user)
         store.commit('setCurrentUser', user)
         store.dispatch('fetchUserProfile')
 
         fb.usersCollection.doc(user.uid).onSnapshot(doc => {
             store.commit('setUserProfile', doc.data())
+            //console.log(doc.data())
         })
     }
 })
@@ -25,8 +27,9 @@ export const store = new Vuex.Store({
             commit('setCurrentUser', null)
             commit('setUserProfile', {})
         },
-        fetchUserProfile({ commit, state }) {
-            fb.usersCollection.doc(state.currentUser.uid).get().then(res => {
+        async fetchUserProfile({ commit, state }) {
+            await fb.usersCollection.doc(state.currentUser.uid).get().then(res => {
+                console.log("fetchUserProfile" + res.data())
                 commit('setUserProfile', res.data())
             }).catch(err => {
                 console.log(err)
@@ -35,11 +38,13 @@ export const store = new Vuex.Store({
     },
 
     mutations: {
-        setCurrentUser(state, val) {
-            state.currentUser = val
+         setCurrentUser(state, val) {
+             state.currentUser = val
+            // console.log( state.currentUser)
         },
         setUserProfile(state, val) {
             state.userProfile = val
+            // console.log(state.userProfile)
         },
     }
 });
