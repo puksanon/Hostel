@@ -7,7 +7,7 @@
             <div class="main">
                 <v-data-table
                     :headers="headers"
-                    :items="HostelList"
+                    :items="hostelList"
                     sort-by="calories"
                     class="elevation-1"
                 >
@@ -35,9 +35,6 @@
                                         <v-row>
                                         <v-col cols="12" sm="6" md="4">
                                             <v-text-field outlined color="purple darken-3" v-model="editedItem.name" :rules="inputRules" label="Hostel Name" required></v-text-field>
-                                        </v-col>
-                                        <v-col cols="12" sm="6" md="4">
-                                            <v-text-field outlined color="purple darken-3" v-model="editedItem.ownerId" :rules="inputRules" label="ownerId" required></v-text-field>
                                         </v-col>
                                         <v-col cols="12" sm="6" md="4">
                                             <v-text-field outlined color="purple darken-3" v-model="editedItem.detail" :rules="inputRules" label="detail" required></v-text-field>
@@ -89,75 +86,72 @@
                         mdi-delete
                     </v-icon>
                     </template>
-                    <template v-slot:no-data>
-                    <v-btn color="purple darken-3" dark @click="GetHostelList">Reset</v-btn>
-                    </template>
                 </v-data-table>
             </div> 
     </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 const Navbar = () => import('@/components/navbar/Navbar')
 const AdminHeader = () => import('@/components/admin/Header')
+import { hostelCollection } from '../../firebase/firebaseInit'
 export default {
     name: "ManageHostelBackground",
     components : { Navbar , AdminHeader },
     data: () => ({
-      dialog      : false,
-      hostel_form : true,
-      headers: [
-        { text: 'id', align: 'start',value: 'id',},
-        { text: 'name', value: 'name' },
-        { text: 'ownerId', value: 'owner' },
-        { text: 'owner Name', value: 'owner' },
-        { text: 'detail', value: 'detail' },
-        { text: 'price', value: 'price', sortable: false },
-        { text: 'type', value: 'type' },
-        { text: 'website', value: 'website' , sortable: false},
-        { text: 'location', value: 'location' },    
-        { text: 'time', value: 'time', sortable: false },
-        { text: 'images', value: 'images', sortable: false },
-        { text: 'Actions', value: 'action', sortable: false },
-      ],
+        dialog      : false,
+        hostel_form : true,
+        currentUser : null,
+        user        : [],
+        headers: [
+            { text: 'name', value: 'name' },
+            { text: 'owner Name', value: 'owner' },
+            { text: 'detail', value: 'detail' },
+            { text: 'price', value: 'price', sortable: false },
+            { text: 'type', value: 'type' },
+            { text: 'website', value: 'website' , sortable: false},
+            { text: 'location', value: 'location' },    
+            { text: 'time', value: 'time', sortable: false },
+            { text: 'images', value: 'images', sortable: false },
+            { text: 'Actions', value: 'action', sortable: false },
+        ],
         HostelList    : [],
         editedIndex   : -1,
         editedItem:{
             name        : '',
-            ownerId     : '',
-            owner       : '',
             detail      : '',
             price       : '',
             type        : '',
             time        : '',
             location    : '',
             website     : '',
-            images      : '',
+            images      : 'https://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3',
         },
         defaultItem: {
             name        : '',
-            ownerId     : '',
-            owner       : '',
             detail      : '',
             price       : '',
             type        : '',
             time        : '',
             location    : '',
             website     : '',
-            images      : '',
+            images      : 'https://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3',
         },
         inputRules: [
             input => !!input || 'input is required',
         ],
         Picrules: [
-        value => !value || value.size < 20000000 || 'Avatar size should be less than 20 MB!',
-      ],
+            value => !value || value.size < 20000000 || 'Avatar size should be less than 20 MB!',
+        ],
     }),
 
     computed: {
       formTitle () {
         return this.editedIndex === -1 ? 'Create Hostel' : 'Manage Hostel'
       },
+
+        ...mapState(['hostelList']),
     },
 
     watch: {
@@ -167,17 +161,68 @@ export default {
     },
 
     async created () {
-        this.GetHostelList();
+        this.getuser();
+        // this.GetHostelList();
     },
 
     methods: {
-        //get list of hostel
-        async GetHostelList(){
-            await this.axios.get('https://15d36ad4-97b7-4750-958f-8848ceaca773.mock.pstmn.io/hostel/list').then(res => {
-                this.HostelList = res.data
-            }).catch(res =>{
-                console.error(res)
-            })
+        getuser(){
+            if(this.$store.state.currentUser){
+                const currentUser    = this.$store.state.currentUser
+                const user           = this.$store.state.userProfile
+                this.user            = user
+                this.currentUser     = currentUser
+            }
+        },
+
+        createhostel(){
+            const user  = this.user.fname
+            const uid   = this.currentUser.uid 
+            if(user){
+                hostelCollection.add({
+                    userId    : uid,
+                    owner     : user,
+                    name      : this.editedItem.name,
+                    detail    : this.editedItem.detail,
+                    price     : this.editedItem.price,
+                    type      : this.editedItem.type,
+                    time      : this.editedItem.time,
+                    location  : this.editedItem.location,
+                    website   : this.editedItem.website,
+                    images    : this.editedItem.images
+                }).then(() =>{
+                    this.$swal({
+                        toast: true,
+                        position: 'bottom-end',
+                        icon: 'success',
+                        title: 'Booking success',
+                        timerProgressBar: true,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    this.$router.push('/user/mybook')
+                }).catch(err => {
+                    this.$swal({
+                        toast: true,
+                        position: 'bottom-end',
+                        icon: 'erroe',
+                        title: err.message,
+                        timerProgressBar: true,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                })
+            }else{
+                this.$swal({
+                    toast: true,
+                    position: 'bottom-end',
+                    icon: 'error',
+                    title: 'Plsase Sign in',
+                    timerProgressBar: true,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
         },
 
         editItem (item) {
@@ -213,11 +258,9 @@ export default {
 
         save () {
             if (this.editedIndex > -1) {
-
-                // api insert new hostel
-            Object.assign(this.desserts[this.editedIndex], this.editedItem)
+                console.log('test')
             } else {
-                // api update hostel
+                this.createhostel();
             }
             this.close()
         },

@@ -49,7 +49,7 @@
 </template>
 
 <script>
-
+const fb = require('../../firebase/firebaseInit')
 export default {
     name: "CardHostel",
     data() {
@@ -60,13 +60,25 @@ export default {
     },
 
     async created() {
-        await this.axios.get('https://15d36ad4-97b7-4750-958f-8848ceaca773.mock.pstmn.io/hostel/list').then(res => {
-            this.HostelList = res.data
-        }).catch(res =>{
-            console.error(res)
-        })
-        
-    },
+        await 
+        // this.axios.get('https://15d36ad4-97b7-4750-958f-8848ceaca773.mock.pstmn.io/hostel/list').then(res => {
+        //     this.HostelList = res.data
+        // }).catch(res =>{
+        //     console.error(res)
+        // })
 
+
+        fb.hostelCollection.onSnapshot(querySnapshot => {
+            let hostelArray = []
+      
+            querySnapshot.forEach(doc => {
+              let hostel = doc.data()
+              hostel.id = doc.id
+              hostelArray.push(hostel)
+            })
+      
+            this.HostelList = hostelArray
+        })
+    },
 }
 </script>

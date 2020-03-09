@@ -107,5 +107,6 @@ export default {
             this.userProfile = userProfile
         }
     },
+
 }
 </script>

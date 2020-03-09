@@ -150,7 +150,7 @@
             <v-spacer></v-spacer>
             <v-btn text class="mr-2 hidden-sm-and-down" to="/">Home</v-btn>
             <v-btn text class="mr-2 hidden-sm-and-down" to="/user/dashboard">DASHBOARD</v-btn>
-            <v-btn text class="mr-2 hidden-sm-and-down" to="/user/dashboard/mybook">my book</v-btn>
+            <v-btn text class="mr-2 hidden-sm-and-down" to="/user/mybook">my book</v-btn>
             <v-menu
                 open-on-hover
                 transition="slide-x-transition"
@@ -221,26 +221,20 @@
                             <v-list-item-title>Home</v-list-item-title>
                         </v-list-item>
 
-                        <v-list-item to="/admin/dashboard">
+                        <v-list-item to="/user/dashboard">
                             <v-list-item-icon>
                                 <v-icon>mdi-home</v-icon>
                             </v-list-item-icon>
                             <v-list-item-title>Dashboard</v-list-item-title>
                         </v-list-item>
 
-                        <v-list-item to="/admin/dashboard/manageuser">
+                        <v-list-item to="/user/mybook">
                             <v-list-item-icon>
                                 <v-icon>mdi-home</v-icon>
                             </v-list-item-icon>
                             <v-list-item-title>Manage User</v-list-item-title>
                         </v-list-item>
 
-                        <v-list-item to="/admin/dashboard/managehostel">
-                            <v-list-item-icon>
-                                <v-icon>mdi-home</v-icon>
-                            </v-list-item-icon>
-                            <v-list-item-title>Manage Hostel</v-list-item-title>
-                        </v-list-item>
                     </v-list-item-group>
                 </v-list>
                 <template v-slot:append>

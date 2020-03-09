@@ -14,11 +14,11 @@ const SignUp        = () => import('@/views/Signup')
 const AdminDashboard= () => import('@/views/admin/AdminDashboard.vue')
 const ManageHostel  = () => import('@/views/admin/ManageHostel.vue')
 const ManageUser    = () => import('@/views/admin/ManageUser.vue')
+
 //user
-
 const UserDashboard = () => import('@/views/user/Dashboard')
-
-  
+const Mybook        = () => import('../views/user/Booking')
+   
 const router = new VueRouter({
   mode: "history",
   routes :[
@@ -68,6 +68,14 @@ const router = new VueRouter({
       }
     },
     {
+      path: "/admin/manageuser",
+      name: "ManageUser",
+      component : ManageUser,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
       path: "/user/dashboard",
       name: "UserDashboard",
       component : UserDashboard,
@@ -76,9 +84,9 @@ const router = new VueRouter({
       }
     },
     {
-      path: "/admin/manageuser",
-      name: "ManageUser",
-      component : ManageUser,
+      path: "/user/mybook",
+      name: "Mybook",
+      component : Mybook,
       meta: {
         requiresAuth: true
       }

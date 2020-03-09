@@ -158,7 +158,7 @@
                                                                                 <v-text-field
                                                                                     flat
                                                                                     disabled
-                                                                                    :value="'x' + Roomtype.price"
+                                                                                    :value="'x' + Getroom.price"
                                                                                 ></v-text-field>
                                                                             </v-col>
                                                                             <v-col cols="3">
@@ -204,6 +204,7 @@
 </template>
 
 <script>
+import { bookingCollection } from '../../firebase/firebaseInit'
 import { Hostel } from "../../data/data.json";
 export default {
     name: "RoomDetail",
@@ -220,7 +221,7 @@ export default {
             BookNum         : '',
             DateStart       : '',
             DateEnd         : '',
-            Roomtype        : [],
+            Getroom        : [],
             currentUser     : null,
             BookNumRules    : [
             BookNum => !!BookNum || 'input is required',
@@ -228,8 +229,6 @@ export default {
         }
     },
 
-    //cheack permission and vertify user 
-    //*ถ้าเปลี่ยนไปใช้ firebase auth ตรงนี้ก็จะกลายเป็นการเรียกขอมูล user ใน vuex มาใช้เเทนเพื่อตรวจสอบข้อมูลของผู้ใช้ก่อนทำรายการ
     created() {
         if(this.$store.state.currentUser){
             const currentUser    = this.$store.state.currentUser
@@ -241,7 +240,7 @@ export default {
 
      watch: {
         BookNum: function () {
-            this.TotalPrice = this.BookNum * this.Roomtype.price
+            this.TotalPrice = this.BookNum * this.Getroom.price
         }
     },
 
@@ -260,7 +259,7 @@ export default {
                 })
             }else{
                 this.dialog = true;
-                this.Roomtype = room;
+                this.Getroom = room;
             }
         },
 
@@ -272,27 +271,48 @@ export default {
         Booking(){
             //มีห้องว่างไม่พอ
             //const HostelId  = this.Hotal.hotelId *ใช้เอาไว้เก็บค่า id ของโรงเเรม ตอนเสร้าง object จองห้อง จะเก็บ id ของโรงเเรม id tyoe ของห้อง เเละ id ของผู้จอง
-            const roomTotal = this.Roomtype.roomTotal;
-            const BoookRoom = this.BookNum
-            const user      = this.user
+            const roomDetail = this.Getroom;
+            const BookRoom   = this.BookNum
+            const user       = this.user
             if (user)
             { 
+                console.log(user.permission ,roomDetail.roomTotal ,BookRoom)
                 if(user.permission === 'user')
                 {
-                    if(roomTotal >= BoookRoom)
+                    if(roomDetail.roomTotal >= BookRoom)
                     {
-                        //do function save to database
-                        //return status
-                        this.$swal({
-                            toast: true,
-                            position: 'bottom-end',
-                            icon: 'success',
-                            title: 'Booking Success',
-                            timerProgressBar: true,
-                            showConfirmButton: false,
-                            timer: 1500
+                        const uid = this.currentUser.uid
+                        bookingCollection.add({
+                            userId    : uid,
+                            dateStart : this.DateStart,
+                            DateEnd   : this.DateEnd,
+                            Totalroom : BookRoom,
+                            HostelId  : this.Hotal.hotelId,
+                            HostelName: this.Hotal.hotelname,
+                            roomId    : roomDetail.id,
+                            roomType  : roomDetail.name
+                        }).then(() =>{
+                            this.$swal({
+                                toast: true,
+                                position: 'bottom-end',
+                                icon: 'success',
+                                title: 'Booking success',
+                                timerProgressBar: true,
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            this.$router.push('/user/mybook')
+                        }).catch(err => {
+                            this.$swal({
+                                toast: true,
+                                position: 'bottom-end',
+                                icon: 'erroe',
+                                title: err.message,
+                                timerProgressBar: true,
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
                         })
-                            this.$router.push('/')
                     }else{
                             this.$swal({
                             toast: true,

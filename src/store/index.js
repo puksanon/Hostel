@@ -11,11 +11,39 @@ fb.auth.onAuthStateChanged(user => {
         fb.usersCollection.doc(user.uid).onSnapshot(doc => {
             store.commit('setUserProfile', doc.data())
         })
+
+        fb.bookingCollection.where('userId', '==', user.uid).onSnapshot(querySnapshot => {
+            let booksArray = []
+      
+            querySnapshot.forEach(doc => {
+              let book = doc.data()
+              book.id = doc.id
+              booksArray.push(book)
+            })
+      
+            store.commit('loadBook', booksArray)
+        })
+
+        fb.hostelCollection.where('userId', '==', user.uid).onSnapshot(querySnapshot => {
+            let hostelArray = []
+      
+            querySnapshot.forEach(doc => {
+              let hostel = doc.data()
+              hostel.id = doc.id
+              hostelArray.push(hostel)
+            })
+      
+            store.commit('loadhostel', hostelArray)
+        })
     }
 })
 
 export const store = new Vuex.Store({
     state:{
+        bookList: [],
+        book: {},
+        hostelList: [],
+        hostel: {},
         currentUser: null,
         userProfile: {},
     },
@@ -41,5 +69,11 @@ export const store = new Vuex.Store({
         setUserProfile(state, val) {
             state.userProfile = val
         },
+        loadBook (state, notes) {
+            state.bookList = notes
+        },
+        loadhostel (state, notes) {
+            state.hostelList = notes
+        }
     }
 });

@@ -12,11 +12,15 @@ const currentUser = auth.currentUser
 
 // firebase collections
 const usersCollection = database.collection('users')
+const bookingCollection = database.collection('booking')
+const hostelCollection = database.collection('hostel')
 
 export { 
     database,
     auth,
     currentUser,
-    usersCollection
+    usersCollection,
+    bookingCollection,
+    hostelCollection
 }
 
