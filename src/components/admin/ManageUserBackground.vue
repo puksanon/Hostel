@@ -6,6 +6,7 @@
         </div>
             <div class="main">
                 <v-data-table
+                    :search="search"
                     :headers="headers"
                     :items="userlist"
                     sort-by="calories"
@@ -19,6 +20,13 @@
                         inset
                         vertical
                         ></v-divider>
+                        <v-text-field
+                            v-model="search"
+                            append-icon="mdi-magnify"
+                            label="Search"
+                            single-line
+                            hide-details
+                        ></v-text-field>
                         <v-spacer></v-spacer>
                         <v-dialog v-model="dialog" max-width="800px">
                         <template v-slot:activator="{ on }">
@@ -110,31 +118,33 @@
 </template>
 
 <script>
-const Navbar = () => import('@/components/navbar/Navbar')
+const fb = require('../../firebase/firebaseInit')
+const Navbar      = () => import('@/components/navbar/Navbar')
 const AdminHeader = () => import('@/components/admin/Header')
 export default {
     name: "ManageUserBackground",
     components : { Navbar , AdminHeader },
     data: () => ({
-      dialog      : false,
-      user_form : true,
-      headers: [
-        { text: 'fname', align: 'start',value: 'fname'},
-        { text: 'lname', value: 'lname' },
-        { text: 'personal id', value: 'pid' },
-        { text: 'email', value: 'email' },
-        { text: 'username', value: 'username' },
-        { text: 'password', value: 'password', sortable: false },
-        { text: 'birthday', value: 'birthday' },
-        { text: 'country', value: 'country' },
-        { text: 'city', value: 'city' },    
-        { text: 'zip code', value: 'zipcode' },
-        { text: 'phone', value: 'phone'},
-        { text: 'address', value: 'address', sortable: false },
-        { text: 'permission', value: 'permission', sortable: false },
-        { text: 'avatar', value: 'avatar', sortable: false },
-        { text: 'Actions', value: 'action', sortable: false }
-      ],
+        search      : '',
+        dialog      : false,
+        user_form   : true,
+        headers: [
+            { text: 'fname', align: 'start',value: 'fname'},
+            { text: 'lname', value: 'lname' },
+            { text: 'personal id', value: 'pid' },
+            { text: 'email', value: 'email' },
+            { text: 'username', value: 'username' },
+            { text: 'password', value: 'password', sortable: false },
+            { text: 'birthday', value: 'birthday' },
+            { text: 'country', value: 'country' },
+            { text: 'city', value: 'city' },    
+            { text: 'zip code', value: 'zipcode' },
+            { text: 'phone', value: 'phone'},
+            { text: 'address', value: 'address', sortable: false },
+            { text: 'permission', value: 'permission', sortable: false },
+            { text: 'avatar', value: 'avatar', sortable: false },
+            { text: 'Actions', value: 'action', sortable: false }
+        ],
         userlist    : [],
         editedIndex   : -1,
         editedItem:{
@@ -196,9 +206,17 @@ export default {
     methods: {
         //get list of hostel
         async Getuserlist(){
-            await this.axios.get('https://4b91d912-b27e-4147-8134-b26c7ac025bc.mock.pstmn.io/user/list').then(res => {
-                this.userlist = res.data
+            await fb.usersCollection.onSnapshot(querySnapshot => {
+            let userArray = []
+      
+            querySnapshot.forEach(doc => {
+              let user = doc.data()
+              user.id = doc.id
+              userArray.push(user)
             })
+      
+            this.userlist = userArray
+        })
         },
 
         editItem (item) {

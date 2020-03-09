@@ -1,22 +1,55 @@
 Functional
-    [] List Hotel (Show Name, Price, Detail)
-    [] Hotel Info (Show Name, Price, Detail, Map (eg. Google Map)
-    [] Login by using username and password.
-    [] Register (eg. Name, Last Name, Birth Data, and email)
-    [] Confirm Password Optional
-    [] Booking (Can Booking, Show My Booking)
-    [] If you have any idea about function in the app. Please put it in an application.
+    [+] List Hotel (Show Name, Price, Detail)
+    [+] Hotel Info (Show Name, Price, Detail, Map (eg. Google Map)
+    [+] Login by using username and password.
+    [+] Register (eg. Name, Last Name, Birth Data, and email)
+    [+] Confirm Password Optional
+    [+] Booking (Can Booking, Show My Booking)
+    [+] If you have any idea about function in the app. Please put it in an application.
 
 Non-functional
-    [] Validate the duplicate email when registration
-    [] Show Available Hotel
-    [] Show the list of menu.
-    [] If you have any idea about function in the app. Please put it in an application.
+    [+] Validate the duplicate email when registration
+    [+] Show Available Hotel
+    [+] Show the list of menu.
+    [+] If you have any idea about function in the app. Please put it in an application.
 
 --------------------------------------------------------------------------------------------
 How to submit test
         Github (Shared the repository that store your code to us).
-    []  Deploy your website to Netlify or Firebase hosting.
+    [+]  Deploy your website to Netlify or Firebase hosting.
         Send share link to spaceman@existing.co.
         Subject: "Submit Front-end test (intern) - your_name"
         cc: panupak.v@existing.co, jiidapa1996@gmail.com
+
+--------------------------------------------------------------------------------------
+
+--------------------project idea overview-----------------------
+ภาพรวมคือผมมองว่าจาก req 
+ตอนนี้สิ่งเเรกที่ทำคือไปเเล้วคือ  List Hotel (Show Name, Price, Detail) อันนี้เนี่ยผมคิดว่าทำไมต้องมีหลายๆโรงเเรม
+ผมเลยออกเเบบมาในลักษณะของ partner โดยพาทเนอร์เนี่ยผมถือเป็น user คนหนึ่งที่สามารถสร้างโรงเเรมของเค้าขึ้นมาได้
+เเละสามารถจัดการโรงเเรมของตัวเองได้ เเละก็มี admin ของระบบเนี่ยเป็นคนจัดการตัวโรงเเรมอีกที
+ผมก็เลยเเบ่งเป็น  3 permission ดังนี้
+-user       - สามารถจองโรงเเรมได้
+-partner    - สามารถสร้างโรงเเรมมจัดการระบบต่างๆของโรงเเรมได้ สามารถดู list  ของคนที่เข้ามาจอง (ไม่สามารถจองโรงเเรมได้)
+-admin      - จัดการ user เเละ ่hostel in system (ไม่สามารถจองโรงเเรมได้)
+
+-----------------system----------------------------------------------
++ตอนนี้ระบบสามารถ signin /signup ด้วยemailเเละ password โดยใช้ระบบของ firebase auth
+
++admin สามารถ insert user / hostel เข้าไปในระบบซึ่งจะเก็บข้อมูลไว้ใน firebase cloud store (ขาด update/delete ของทั้ง user เเละ hostel)
+
++หน้า hostel detail เป็นการ mock data ซึ่งผมเก็บไว้ใน floder data โดยปกติเเล้วหน้านี้จะประกอบไปด้วยรูปภาพภายใน เเละก็ประเภทของห้องเเบบต่างๆตามที่ partner จะสร้างเข้ามาเพราะผมคิดว่าโรงเเรมบางโรงเเรมอาจจะมีห้องที่ราคาไม่เท่ากันก็ได้...มโน 5555
+
++เมื่อกดจองจะเช็คจำนวนห้องในระบบ ตรวจสอบ permission ถ้าผ่านก็จะสร้างตัว booking ขึ้นมาเเล้วเก็บ user id ไว้เพื่อเอาไว้ค้นหาในส่วนโชว์ mybook ของเเต่ละคน
+
+----------------------ยังไม่ได้ทำ------------------------------
+- หน้า hostel detail
+- upload image
+- update / delete data
+- ส่วนของ partner
+- highlight hostel 
+
+----------------------สิ่งที่ควรปรับปรุง------------------
+-clean algo/archi / clean code
+-การออกเเบบ ux/ui
+-ความรู้เพิ่มเติม vuex / firebase / reactive programming

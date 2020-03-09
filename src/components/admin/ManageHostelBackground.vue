@@ -8,6 +8,7 @@
                 <v-data-table
                     :headers="headers"
                     :items="hostelList"
+                    :search="search"
                     sort-by="calories"
                     class="elevation-1"
                 >
@@ -19,6 +20,13 @@
                         inset
                         vertical
                         ></v-divider>
+                        <v-text-field
+                            v-model="search"
+                            append-icon="mdi-magnify"
+                            label="Search"
+                            single-line
+                            hide-details
+                        ></v-text-field>
                         <v-spacer></v-spacer>
                         <v-dialog v-model="dialog" max-width="800px">
                         <template v-slot:activator="{ on }">
@@ -100,6 +108,7 @@ export default {
     name: "ManageHostelBackground",
     components : { Navbar , AdminHeader },
     data: () => ({
+        search      : '',
         dialog      : false,
         hostel_form : true,
         currentUser : null,
@@ -114,6 +123,7 @@ export default {
             { text: 'location', value: 'location' },    
             { text: 'time', value: 'time', sortable: false },
             { text: 'images', value: 'images', sortable: false },
+            { text: 'status', value: 'status' },
             { text: 'Actions', value: 'action', sortable: false },
         ],
         HostelList    : [],
@@ -178,10 +188,12 @@ export default {
         createhostel(){
             const user  = this.user.fname
             const uid   = this.currentUser.uid 
+            const status= true
             if(user){
                 hostelCollection.add({
                     userId    : uid,
                     owner     : user,
+                    status    : status,
                     name      : this.editedItem.name,
                     detail    : this.editedItem.detail,
                     price     : this.editedItem.price,

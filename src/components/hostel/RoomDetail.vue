@@ -244,8 +244,8 @@ export default {
         }
     },
 
-
     methods:{
+        //chack user
         handleBooking(room){
             if (!this.user || !this.currentUser){
                 this.$swal({
@@ -276,7 +276,6 @@ export default {
             const user       = this.user
             if (user)
             { 
-                console.log(user.permission ,roomDetail.roomTotal ,BookRoom)
                 if(user.permission === 'user')
                 {
                     if(roomDetail.roomTotal >= BookRoom)

@@ -243,7 +243,6 @@
                     </div>
                 </template>    
             </v-navigation-drawer>
-
         </div> 
     </div>
 </template>
@@ -272,18 +271,15 @@ export default {
             ...mapState(['userProfile'])
         },
 
-
     methods: {
         Signout(){
             fb.auth.signOut().then(() => {
                     this.$store.dispatch('clearData')
-                    this.$router.go(this.$router.currentRoute)
+                    this.$router.push('/login')
             }).catch(err => {
                     console.log(err)
             })
         },
-
-
     }
 
 }

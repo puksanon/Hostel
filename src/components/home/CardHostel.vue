@@ -68,7 +68,7 @@ export default {
         // })
 
 
-        fb.hostelCollection.onSnapshot(querySnapshot => {
+        fb.hostelCollection.where('status', '==', true).onSnapshot(querySnapshot => {
             let hostelArray = []
       
             querySnapshot.forEach(doc => {

@@ -51,8 +51,8 @@ export default {
         dialog      : false,
         signin_form : true,
         performingRequest: false,
-        email       : 'kittipit22@hotmail.com',
-        password    : '123456',
+        email       : '',
+        password    : '',
         emailRules: [
             email => !!email || 'E-mail is required',
             email => /.+@.+\..+/.test(email) || 'E-mail must be valid',
@@ -91,7 +91,7 @@ export default {
                     this.$store.commit('setCurrentUser', user)
                     this.$store.dispatch('fetchUserProfile')
                     this.performingRequest = false
-                    this.$router.go(this.$router.currentRoute)
+                    this.$router.push('/')
                 }).catch(err => {
                     this.$swal({
                         toast: true,
