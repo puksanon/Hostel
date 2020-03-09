@@ -13,8 +13,10 @@ const SignUp        = () => import('@/views/Signup')
 //admin 
 const AdminDashboard= () => import('@/views/admin/AdminDashboard.vue')
 const ManageHostel  = () => import('@/views/admin/ManageHostel.vue')
-const ManageUser  = () => import('@/views/admin/ManageUser.vue')
+const ManageUser    = () => import('@/views/admin/ManageUser.vue')
 //user
+
+const UserDashboard = () => import('@/views/user/Dashboard')
 
   
 const router = new VueRouter({
@@ -61,6 +63,14 @@ const router = new VueRouter({
       path: "/admin/managehostel",
       name: "ManageHostel",
       component : ManageHostel,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/user/dashboard",
+      name: "UserDashboard",
+      component : UserDashboard,
       meta: {
         requiresAuth: true
       }

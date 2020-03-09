@@ -1,6 +1,6 @@
 <template>
     <div class="Navbar">
-        <div class="navbar_signin" v-if="!user.permission">
+        <div class="navbar_signin" v-if="!currentUser">
             <v-card class="mx-auto overflow-hidden" >
                 <v-app-bar
                 color="transparent"
@@ -13,12 +13,13 @@
                 <v-toolbar-title>The Hostel</v-toolbar-title>
 
                 <v-spacer></v-spacer>
+                 <v-btn text class="mr-2 hidden-sm-and-down" to="/">HOME</v-btn>
                 <v-btn text class="mr-2 hidden-sm-and-down" to="/login">SIGN IN</v-btn>
                 <v-btn text class="mr-2 hidden-sm-and-down" to="/signup">SING UP</v-btn>
                 </v-app-bar>
             </v-card>   
         </div>
-        <div class="admin_nav" v-else-if="user.permission === 'admin'">
+        <div class="admin_nav" v-else-if="userProfile.permission === 'admin'">
             <v-card class="mx-auto overflow-hidden">
                 <v-app-bar
                 color="transparent"
@@ -134,7 +135,7 @@
                 </template>    
             </v-navigation-drawer>
         </div>
-        <div class="user_nav" v-else-if="user.permission === 'user'">
+        <div class="user_nav" v-else-if="userProfile.permission === 'user' ">
             <v-card class="mx-auto overflow-hidden">
             <v-app-bar
               color="transparent"
@@ -148,9 +149,8 @@
 
             <v-spacer></v-spacer>
             <v-btn text class="mr-2 hidden-sm-and-down" to="/">Home</v-btn>
-            <v-btn text class="mr-2 hidden-sm-and-down" to="/admin/dashboard">DASHBOARD</v-btn>
-            <v-btn text class="mr-2 hidden-sm-and-down" to="/admin/dashboard/manageuser">Manage User</v-btn>
-            <v-btn text class="mr-2 hidden-sm-and-down" to="/admin/dashboard/managehostel">Manage Hostel</v-btn>
+            <v-btn text class="mr-2 hidden-sm-and-down" to="/user/dashboard">DASHBOARD</v-btn>
+            <v-btn text class="mr-2 hidden-sm-and-down" to="/user/dashboard/mybook">my book</v-btn>
             <v-menu
                 open-on-hover
                 transition="slide-x-transition"
@@ -255,29 +255,35 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 const fb = require('../../firebase/firebaseInit')
 export default {
     name : "Navbar",
     data : () => ({
-        user  : [],
-        currentUser   : '',
-        sidebar: false,
+        user        : [],
+        currentUser : null,
+        sidebar     : false,
     }),
 
     created(){
         if(this.$store.state.currentUser){
-            const currentUser    = this.$store.state.currentUser.uid
+            const currentUser    = this.$store.state.currentUser
             const user           = this.$store.state.userProfile
             this.user = user
             this.currentUser = currentUser
         }
     },
 
+    computed: {
+            ...mapState(['userProfile'])
+        },
+
+
     methods: {
         Signout(){
             fb.auth.signOut().then(() => {
                     this.$store.dispatch('clearData')
-                    this.$router.push('/')
+                    this.$router.go(this.$router.currentRoute)
             }).catch(err => {
                     console.log(err)
             })

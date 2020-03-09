@@ -1,5 +1,5 @@
 <template>
-    <div class="AdminDashboardBackground">
+    <div class="UserDashboardBG ">
         <Navbar/>
         <div class="header">
             <AdminHeader/>
@@ -95,7 +95,7 @@
 const Navbar = () => import('@/components/navbar/Navbar')
 const AdminHeader = () => import('@/components/admin/Header')
 export default {
-    name: "AdminDashboardBackground",
+    name: "UserDashboardBG",
     components : { Navbar , AdminHeader },
     data: () => ({
         userProfile : [],

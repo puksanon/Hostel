@@ -232,7 +232,7 @@ export default {
     //*ถ้าเปลี่ยนไปใช้ firebase auth ตรงนี้ก็จะกลายเป็นการเรียกขอมูล user ใน vuex มาใช้เเทนเพื่อตรวจสอบข้อมูลของผู้ใช้ก่อนทำรายการ
     created() {
         if(this.$store.state.currentUser){
-            const currentUser    = this.$store.state.currentUser.uid
+            const currentUser    = this.$store.state.currentUser
             const user           = this.$store.state.userProfile
             this.user = user
             this.currentUser = currentUser
